@@ -1,12 +1,15 @@
 
 
-import { Box, Button, TextField, Typography } from '@mui/material'
+import { Box, Button, InputAdornment, TextField, Typography } from '@mui/material'
 // import { Button } from 'bootstrap/dist/js/bootstrap.bundle.min'
-import React from 'react'
+import React, { useState } from 'react'
 import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 const Signin = () => {
+const [showPassword, setShowPassword] = useState(false)
+
   return (
     <div className='text-center'>
 
@@ -30,7 +33,15 @@ const Signin = () => {
             <TextField placeholder='Email' size='small' className='py-3' fullWidth></TextField>
           </Box>
           <Box>
-            <TextField placeholder='Password' size='small' className='pb-3' fullWidth></TextField>
+            <TextField placeholder='Password' type={showPassword ? "text" : "password" } size='small' className='pb-3' fullWidth slotProps={{
+          input: {
+            endAdornment: (
+              <InputAdornment position="start" onClick={()=> setShowPassword(!showPassword)} >
+               {showPassword ? <VisibilityOffIcon/> : <VisibilityIcon />}
+              </InputAdornment>
+            ),
+          },
+        }}></TextField>
 
 
           </Box>
