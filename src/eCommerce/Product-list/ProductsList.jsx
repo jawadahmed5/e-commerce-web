@@ -1,6 +1,8 @@
-import { Box,Rating, Typography } from '@mui/material';
+import { Box, Grid, Rating, Typography } from '@mui/material';
 import { Button, Card } from '@mui/material';
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { data } from 'react-router-dom';
 // import { styled, alpha } from '@mui/material/styles';
 // import AppBar from '@mui/material/AppBar';
 // import Box from '@mui/material/Box';
@@ -24,82 +26,82 @@ import React, { useState } from 'react';
 
 
 const ProductsList = (props) => {
-    const {productsCards} = props;
+    const { productsCards } = props;
 
     const [value, setValue] = useState(2);
 
 
+const [products, setProducts] = useState([]);
+
+console.log(products);
+
+
+
+
+    useEffect(() => {
+        const productsData = axios.get("https://fakestoreapi.com/products").then((data) => setProducts(data.data));
+        
+  
+  
+    }, [])
+
+
     if (!productsCards) {
-        return <div></div>;  // Optional message when productsCards is not passed
+        return <div></div>;
     }
 
 
-  return (
-    <Box sx={{display:"flex", justifyContent:"space-between", alignItems:"center", padding:"50px" }}            >
+
+    return (
+        <Grid container            >
 
 
-    {
-        productsCards.map((product) => {
-            return(
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                
-    <Card className="p-3">
-                        <img src={product.image} alt="" />
-                        <Typography variant='body2'>
-                            {product.Category}
-                        </Typography>
-    
-                        <Typography variant='h6'>
-                            {product.Name}
-                        </Typography>
-    
-    
-                        <Rating
-                            name="simple-uncontrolled"
-                            value={value}
-                            onChange={(event, newValue) => {
-                                setValue(newValue);
-    
-    
-                            }}
-                            defaultValue={2}
-                        />
-                        
-                        <Box sx={{ display: 'flex', justifyContent: "space-between", alignItems:"center" }}>
-                            <Typography >
-                                {product.price}
+            {
+                products.map((product) => {
+                    return (
+                        <Grid item sm={3}>
+                        <Card className="p-3">
+                            <img className='img-fluid' src={product.image} alt="" />
+                            <Typography variant='body2'>
+                                {product.Category}
                             </Typography>
-                            <Button size='small' variant="contained" color="success">
-                                Add
-                            </Button>
-    
-    
-                        </Box>
-    
-                    </Card>
-    
-            )
-        })
-    }
-    
-    
-                    
-                    {/* <Card className='p-3'>
+
+                            <Typography variant='h6'>
+                                {product.Name}
+                            </Typography>
+
+
+                            <Rating
+                                name="simple-uncontrolled"
+                                value={value}
+                                onChange={(event, newValue) => {
+                                    setValue(newValue);
+
+
+                                }}
+                                defaultValue={2}
+                            />
+
+                            <Box sx={{ display: 'flex', justifyContent: "space-between", alignItems: "center" }}>
+                                <Typography >
+                                    {product.price}
+                                </Typography>
+                                <Button size='small' variant="contained" color="success">
+                                    Add
+                                </Button>
+
+
+                            </Box>
+
+                        </Card>
+                        </Grid>
+                    )
+                })
+            }
+
+
+
+            {/* <Card className='p-3'>
                         <img src={ProductImage2} alt="" />
                         <Typography variant='body2'>
                             Hello world
@@ -198,7 +200,7 @@ const ProductsList = (props) => {
                         </Box>
     
                     </Card> */}
-                </Box>  )
+        </Grid>)
 }
 
 export default ProductsList;
