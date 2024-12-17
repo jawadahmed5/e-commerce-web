@@ -10,6 +10,7 @@ import Signup from './eCommerce/Auth/SignupPage/Signup';
 import PrimarySearchAppBar from './eCommerce/HomePage/HomePage';
 import Signin from './eCommerce/Auth/Sign-In-Page/Signin';
 import { ErrorPage } from './eCommerce/ErorrPage/ErrorPage';
+// import CartList from './eCommerce/CartList/CartList';
 
 
 
@@ -22,6 +23,7 @@ function App() {
   ])
   return (
     <div className="App">
+      {/* <CartList/> */}
      {/* <RouterProvider router={router}/> */}
      <RouterProvider router={router} />
      {/* <ErrorPage/> */}

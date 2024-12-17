@@ -1,114 +1,90 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+// import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
+// import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
+// import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+// import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import ProductImage1 from '../../Assets/product-img-1.jpg';
-import ProductImage2 from '../../Assets/product-img-2.jpg';
-import ProductImage3 from '../../Assets/product-img-3.jpg';
-import ProductImage4 from '../../Assets/product-img-4.jpg';
+// import ProductImage1 from '../../Assets/product-img-1.jpg';
+// import ProductImage2 from '../../Assets/product-img-2.jpg';
+// import ProductImage3 from '../../Assets/product-img-3.jpg';
+// import ProductImage4 from '../../Assets/product-img-4.jpg';
 // import Rating from '@mui/material/Rating';
 // import { Button, Card } from '@mui/material';
 import ProductsList from '../Product-list/ProductsList';
 import { Link } from 'react-router-dom';
 // import { Category } from '@mui/icons-material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import CartList from '../CartList/CartList';
+// import CartList from '../Cart-List/CartList';
 
 
-const productsCards= [
-    {
-id:1,
-image:ProductImage1,
-Category:"Snack & Munchies",
-Name:"Haldiram's Sev Bhujia",
-price:"$24",
-
-    },
-
-    {
-        id:2,
-        image:ProductImage2,
-        Category:"diary chocolates",
-        Name:"Diary milk",
-        price:"$14",
-        
-            },
-
-
-            {
-                id:3,
-                image:ProductImage3,
-                Category:"cocunut chocolate",
-                Name:"Paradise",
-                price:"$11",
-                
-                    },
-
-
-                    {
-                        id:4,
-                        image:ProductImage4,
-                        Category:"brown chocolate",
-                        Name:"silk",
-                        price:"$5",
-                        
-                            }
+const productsCards = [
+ 
 ]
 
-const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
-        width: 'auto',
-    },
-}));
+// const Search = styled('div')(({ theme }) => ({
+//     position: 'relative',
+//     borderRadius: theme.shape.borderRadius,
+//     backgroundColor: alpha(theme.palette.common.white, 0.15),
+//     '&:hover': {
+//         backgroundColor: alpha(theme.palette.common.white, 0.25),
+//     },
+//     marginRight: theme.spacing(2),
+//     marginLeft: 0,
+//     width: '100%',
+//     [theme.breakpoints.up('sm')]: {
+//         marginLeft: theme.spacing(3),
+//         width: 'auto',
+//     },
+// }));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-}));
+// const SearchIconWrapper = styled('div')(({ theme }) => ({
+//     padding: theme.spacing(0, 2),
+//     height: '100%',
+//     position: 'absolute',
+//     pointerEvents: 'none',
+//     display: 'flex',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+// }));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('md')]: {
-            width: '20ch',
-        },
-    },
-}));
+// const StyledInputBase = styled(InputBase)(({ theme }) => ({
+//     color: 'inherit',
+//     '& .MuiInputBase-input': {
+//         padding: theme.spacing(1, 1, 1, 0),
+//         // vertical padding + font size from searchIcon
+//         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+//         transition: theme.transitions.create('width'),
+//         width: '100%',
+//         [theme.breakpoints.up('md')]: {
+//             width: '20ch',
+//         },
+//     },
+// }));
 
 export default function PrimarySearchAppBar() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+
+    const [openCart, setOpenCart] = React.useState(false);
+
+      const toggleCart = (newOpen) => () => {
+        setOpenCart(newOpen);
+      };
+    
+
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -152,7 +128,7 @@ export default function PrimarySearchAppBar() {
             onClose={handleMenuClose}
         >
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}><Link className='text-decoration-none text-black'  to="/Sign-up" >Sign up</Link></MenuItem>
+            <MenuItem onClick={handleMenuClose}><Link className='text-decoration-none text-black' to="/Sign-up" >Sign up</Link></MenuItem>
             <MenuItem onClick={handleMenuClose}><Link className='text-decoration-none text-black' to="/Sign-in">Sign in</Link></MenuItem>
         </Menu>
     );
@@ -185,11 +161,10 @@ export default function PrimarySearchAppBar() {
             <MenuItem>
                 <IconButton
                     size="large"
-                    aria-label="show 17 new notifications"
-                    color="inherit"
                 >
-                    <Badge badgeContent={17} color="error">
-                        <NotificationsIcon />
+                    
+                    <Badge badgeContent={4} color="white">
+                        <ShoppingCartIcon onClick={toggleCart(true) } />
                     </Badge>
                 </IconButton>
                 <p>Notifications</p>
@@ -198,7 +173,7 @@ export default function PrimarySearchAppBar() {
                 <IconButton
                     size="large"
                     aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
+                    // aria-controls="primary-search-account-menu"
                     aria-haspopup="true"
                     color="inherit"
                 >
@@ -230,7 +205,7 @@ export default function PrimarySearchAppBar() {
                     >
                         Subscription Store
                     </Typography>
-                    <Search>
+                    {/* <Search>
                         <SearchIconWrapper>
                             <SearchIcon />
                         </SearchIconWrapper>
@@ -238,7 +213,7 @@ export default function PrimarySearchAppBar() {
                             placeholder="Search…"
                             inputProps={{ 'aria-label': 'search' }}
                         />
-                    </Search>
+                    </Search> */}
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
@@ -251,8 +226,8 @@ export default function PrimarySearchAppBar() {
                             aria-label="show 17 new notifications"
                             color="inherit"
                         >
-                            <Badge badgeContent={17} color="error">
-                                <NotificationsIcon />
+                            <Badge badgeContent={5} color="error">
+                            <ShoppingCartIcon onClick={toggleCart(true) }/>
                             </Badge>
                         </IconButton>
                         <IconButton
@@ -285,20 +260,23 @@ export default function PrimarySearchAppBar() {
 
                 </Toolbar>
 
-
-            </AppBar>
-
+     </AppBar>
 
 
 
 
-<Box component="main">
+
+            <Box component="main">
+{/* <artList/> */}
 
 
-
-          <ProductsList productsCards={productsCards}/>
+                <ProductsList productsCards={productsCards} />
 
             </Box>
+
+
+{/* <CartList/> */}
+<CartList openCart={openCart} toggleCart={toggleCart}/>
 
 
 
@@ -332,5 +310,5 @@ export default function PrimarySearchAppBar() {
 
 
 
-);
+    );
 }
