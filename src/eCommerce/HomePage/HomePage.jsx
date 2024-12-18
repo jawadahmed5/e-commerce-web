@@ -26,6 +26,7 @@ import { Link } from 'react-router-dom';
 // import { Category } from '@mui/icons-material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import CartList from '../CartList/CartList';
+import { useSelector } from 'react-redux';
 // import CartList from '../Cart-List/CartList';
 
 
@@ -84,6 +85,8 @@ export default function PrimarySearchAppBar() {
         setOpenCart(newOpen);
       };
     
+
+const {count} = useSelector((state) => state.counter);
 
 
     const isMenuOpen = Boolean(anchorEl);
@@ -226,7 +229,7 @@ export default function PrimarySearchAppBar() {
                             aria-label="show 17 new notifications"
                             color="inherit"
                         >
-                            <Badge badgeContent={5} color="error">
+                            <Badge badgeContent={count} color="error">
                             <ShoppingCartIcon onClick={toggleCart(true) }/>
                             </Badge>
                         </IconButton>

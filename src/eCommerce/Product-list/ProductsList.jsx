@@ -67,13 +67,13 @@ console.log(productsData  );
     return (
 
         <>
-<Autocomplete
+{/* <Autocomplete
       disablePortal
       
       options={[]}
       sx={{ width: 250, padding:"10px", }}
       renderInput={(params) => <TextField {...params} label="Category" />}
-    />
+    /> */}
         <Grid container p={5} spacing={5}        >
 
 
