@@ -1,7 +1,11 @@
-import { Autocomplete, Box, CircularProgress, Grid, Rating, TextField, Typography } from '@mui/material';
+import { Autocomplete, Box, CircularProgress, Grid, Rating, TextField, Tooltip, Typography } from '@mui/material';
 import { Button, Card } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import { Link } from 'react-router-dom';
+import productsDetails from '../products-Details/ProductsDetails';
+
 // import { styled, alpha } from '@mui/material/styles';
 // import AppBar from '@mui/material/AppBar';
 // import Box from '@mui/material/Box';
@@ -42,12 +46,14 @@ const ProductsList = (props) => {
 
     useEffect(() => {
         const productsData = axios.get("https://fakestoreapi.com/products").then(
-    (data)=> {setProducts(data.data);
+            (data) => {
+                setProducts(data.data);
 
 
-       
-        setLoadingData(false);})
-console.log(productsData  );
+
+                setLoadingData(false);
+            })
+        console.log(productsData);
 
 
     }, [])
@@ -55,7 +61,7 @@ console.log(productsData  );
 
     if (!productsCards) {
         return <div></div>;
-  
+
     }
 
 
@@ -67,66 +73,73 @@ console.log(productsData  );
     return (
 
         <>
-{/* <Autocomplete
+            {/* <Autocomplete
       disablePortal
       
       options={[]}
       sx={{ width: 250, padding:"10px", }}
       renderInput={(params) => <TextField {...params} label="Category" />}
     /> */}
-        <Grid container p={5} spacing={5}        >
+            <Grid container p={5} spacing={5}        >
 
 
-            {loadingData ? <CircularProgress /> :
+                {loadingData ? <CircularProgress /> :
 
-                products.map((product) => {
-                    return (
-                        <Grid item sm={3}>
-                            <Card className="p-3">
-                                <img style={{ minWidth: "100%", maxWidth: "100%", minHeight: "200px", maxHeight: "200px", backGround: "red" }} className='img-fluid' src={product.image} alt="" />
-                                <Typography className='pt-1' variant='body1'>
-                                    {product.category}
-                                </Typography>
+                    products.map((product) => {
+                        return (
+                            <Grid item sm={3}>
+                                <Card className="p-2">
+                                    <img style={{ minWidth: "100%", maxWidth: "100%", minHeight: "200px", maxHeight: "200px", backGround: "red" }} className='img-fluid' src={product.image} alt="" />
+                                    <Typography className='pt-1' variant='body1'>
+                                        {product.category}
+                                    </Typography>
 
-                                <Typography  className='pt-1 fw-semibold' variant='body2'>
-                                {product.title.length > 20 ? `${product.title.substring(0, 20)}...` : product.title}
-                                </Typography>      
-                                {/* <Typography variant='h6'>
+                                    <Tooltip title={product.title} placement='top' sx={{ cursor: "pointer" }}>
+                                        <Typography className='pt-1 fw-semibold' variant='body2'>
+                                            {product.title.length > 20 ? `${product.title.substring(0, 20)}...` : product.title}
+                                        </Typography>
+                                    </Tooltip>
+                                    {/* <Typography variant='h6'>
                                     {product.rating}
                                 </Typography> */}
 
 
-                                <Rating
-                                    name="simple-uncontrolled"
-                                    value={value}
-                                    onChange={(event, newValue) => {
-                                        setValue(newValue);
+                                    <Rating
+                                        name="simple-uncontrolled"
+                                        value={value}
+                                        onChange={(event, newValue) => {
+                                            setValue(newValue);
 
 
-                                    }}
-                                    defaultValue={2}
-                                />
+                                        }}
+                                        defaultValue={2}
+                                    />
 
-                                <Box sx={{ display: 'flex', justifyContent: "space-between", alignItems: "center" }}>
-                                    <Typography >
-                                        {product.price}
-                                    </Typography>
-                                    <Button size='small' variant="contained" color="success">
-                                        Add
-                                    </Button>
-
-
-                                </Box>
-
-                            </Card>
-                        </Grid>
-                    )
-                })}
+                                    <Box sx={{ display: 'flex', justifyContent: "space-between", alignItems: "center" }}>
+                                        <Typography >
+                                            {product.price}
+                                        </Typography>
+                                        <Tooltip title="View Details" placement='top'>
+                                            <Link to="/Products-Detail">
+                                                <Button size='small' className='ms-4'><VisibilityIcon /></Button>
+                                            </Link>
+                                        </Tooltip>
+                                        <Button size='small' variant="contained" color="success">
+                                            Add
+                                        </Button>
 
 
+                                    </Box>
+
+                                </Card>
+                            </Grid>
+                        )
+                    })}
 
 
-            {/* <Card className='p-3'>
+
+
+                {/* <Card className='p-3'>
                         <img src={ProductImage2} alt="" />
                         <Typography variant='body2'>
                             Hello world
@@ -225,9 +238,9 @@ console.log(productsData  );
                         </Box>
     
                     </Card> */}
-        </Grid>
+            </Grid>
         </>
-        )
+    )
 }
 
 export default ProductsList;

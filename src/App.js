@@ -12,27 +12,70 @@ import Signin from './eCommerce/Auth/Sign-In-Page/Signin';
 import { ErrorPage } from './eCommerce/ErorrPage/ErrorPage';
 import { Provider } from 'react-redux';
 import { Store } from './eCommerce/Store/Store';
+// import  productsDetails from './eCommerce/products-Details/ProductsDetails';
+import ProductsDetails from './eCommerce/products-Details/ProductsDetails';
+import ProductsList from './eCommerce/Product-list/ProductsList';
 // import CartList from './eCommerce/CartList/CartList';
+import file from './eCommerce/folder/file';
+import Header from './eCommerce/Header/Header';
 
 
 
 function App() {
   const router = createBrowserRouter([
-    {path: "/", element: <PrimarySearchAppBar/>, errorElement: <ErrorPage/> },
-    {path: "/Sign-up", element: <Signup/> },
-    {path:"/Sign-in", element: <Signin/>},
+    {
+      path: "/", element: <PrimarySearchAppBar />,
+
+
+      // children:[
+
+
+      //   // {
+      //   //   path:"/jawad",
+      //   //   element: <productsCards/>
+      //   // },
+
+      //   {
+      //     path:"/Products-Detail",
+      //      element: <ProductsDetails/>
+      //     },
+      //     {
+      //       path:"/ahmed",
+      //        element: <file/>
+      //       },
+
+
+
+
+      // ],
+
+
+
+
+
+
+      errorElement: <ErrorPage />
+    },
+    {
+      path: "/Products-Detail",
+      element: <ProductsDetails />
+    },
+    { path: "/Sign-up", element: <Signup /> },
+    { path: "/Sign-in", element: <Signin /> },
+    // {path: "/Products-Detail", element:<productsDetails/> },
     // {path:"/Home-page", element: <}
   ])
   return (
     <div className="App">
       {/* <CartList/> */}
-     {/* <RouterProvider router={router}/> */}
-<Provider store={Store}>
-     
-     <RouterProvider router={router} />
+      {/* <RouterProvider router={router}/> */}
+      <Provider store={Store}>
+        {/* <Header/> */}
 
-     </Provider>
-     {/* <ErrorPage/> */}
+        <RouterProvider router={router} />
+
+      </Provider>
+      {/* <ErrorPage/> */}
     </div>
   );
 }

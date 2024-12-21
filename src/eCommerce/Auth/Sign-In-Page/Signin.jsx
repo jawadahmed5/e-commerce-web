@@ -8,6 +8,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup"
+import PrimarySearchAppBar from '../../HomePage/HomePage';
 
 
 const signinSchema = yup.object({
@@ -29,6 +30,8 @@ console.log(errors);
 
 
   return (
+    <>
+
 
     <form onSubmit={handleSubmit((data) => console.log(data)
     )}>
@@ -94,6 +97,7 @@ console.log(errors);
 
     </div>
     </form>
+    </>
   )
 }
 
