@@ -80,7 +80,7 @@ const ProductsList = (props) => {
       sx={{ width: 250, padding:"10px", }}
       renderInput={(params) => <TextField {...params} label="Category" />}
     /> */}
-            <Grid container p={5} spacing={5}        >
+            <Grid container p={5} spacing={5}       >
 
 
                 {loadingData ? <CircularProgress /> :
@@ -88,8 +88,8 @@ const ProductsList = (props) => {
                     products.map((product) => {
                         return (
                             <Grid item sm={3}>
-                                <Card className="p-2">
-                                    <img style={{ minWidth: "100%", maxWidth: "100%", minHeight: "200px", maxHeight: "200px", backGround: "red" }} className='img-fluid' src={product.image} alt="" />
+                                <Card className="p-2 ">
+                                    <img className='text-center' style={{ minWidth: "100%", maxWidth: "100%", minHeight: "200px", maxHeight: "200px", backGround: "red" }} className='img-fluid' src={product.image} alt="" />
                                     <Typography className='pt-1' variant='body1'>
                                         {product.category}
                                     </Typography>
@@ -99,20 +99,20 @@ const ProductsList = (props) => {
                                             {product.title.length > 20 ? `${product.title.substring(0, 20)}...` : product.title}
                                         </Typography>
                                     </Tooltip>
-                                    {/* <Typography variant='h6'>
-                                    {product.rating}
-                                </Typography> */}
+                                    <Typography variant='h6'>
+                                        {product.rating.rate}
+                                    </Typography>
 
 
                                     <Rating
                                         name="simple-uncontrolled"
-                                        value={value}
+                                        value={product.rating.rate}
                                         onChange={(event, newValue) => {
                                             setValue(newValue);
 
 
                                         }}
-                                        defaultValue={2}
+                                        defaultValue={product.rating.rate}
                                     />
 
                                     <Box sx={{ display: 'flex', justifyContent: "space-between", alignItems: "center" }}>
@@ -120,14 +120,17 @@ const ProductsList = (props) => {
                                             {product.price}
                                         </Typography>
                                         <Tooltip title="View Details" placement='top'>
-                                            <Link to="/Products-Detail">
+                                            {/* <Link to={`/Products-Detail${product?.id}`}> */}
+
+                                            <Link to={`/Products-Detail/${product?.id}`}>
+
+
                                                 <Button size='small' className='ms-4'><VisibilityIcon /></Button>
                                             </Link>
                                         </Tooltip>
                                         <Button size='small' variant="contained" color="success">
                                             Add
                                         </Button>
-
 
                                     </Box>
 

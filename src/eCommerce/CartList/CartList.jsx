@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { Box, Drawer, Typography } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useSelector } from 'react-redux';
 
 const CartList = (props) => {
   const { openCart, toggleCart } = props;
 
+const {cartItems} = useSelector((state) => state.cart)
+
+console.log(cartItems);
 
 
   return (

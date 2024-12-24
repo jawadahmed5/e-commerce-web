@@ -1,5 +1,6 @@
 import React from 'react'
 import ProductsList from '../Product-list/ProductsList';
+import { TextField } from '@mui/material';
 
 
 
@@ -16,16 +17,16 @@ const File = () => {
   
     return (
  
+      <div>
  
- 
- 
+      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
  
  
  
   
   
   
-        <div><ProductsList productsCards={productsCards} />
+        <ProductsList productsCards={productsCards} />
 </div>
 
 
