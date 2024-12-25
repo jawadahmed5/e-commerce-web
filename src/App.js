@@ -16,9 +16,9 @@ import { Store } from './eCommerce/Store/Store';
 import ProductsDetails from './eCommerce/products-Details/ProductsDetails';
 import ProductsList from './eCommerce/Product-list/ProductsList';
 // import CartList from './eCommerce/CartList/CartList';
-import file from './eCommerce/folder/File';
-import Header from './eCommerce/Header/Header';
-import File from './eCommerce/folder/File';
+// import file from './eCommerce/folder/File';
+// import Header from './eCommerce/Header/Header';
+// import File from './eCommerce/folder/File';
 
 
 
@@ -63,7 +63,7 @@ function App() {
     },
     { path: "/Sign-up", element: <Signup /> },
     { path: "/Sign-in", element: <Signin /> },
-    { path: "/file", element: <File /> },
+    // { path: "/file", element: <File /> },
 
     // {path: "/Products-Detail", element:<productsDetails/> },
     // {path:"/Home-page", element: <}

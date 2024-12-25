@@ -54,8 +54,9 @@ function Header() {
         setOpenCart(newOpen);
     };
 
+    const { cartItems } = useSelector((state) => state.cart);
 
-    const { count } = useSelector((state) => state.counter);
+    // const { cartList } = useSelector((state) => state.cart);
 
 
     const isMenuOpen = Boolean(anchorEl);
@@ -135,7 +136,7 @@ function Header() {
                     size="large"
                 >
 
-                    <Badge badgeContent={4} color="white">
+                    <Badge badgeContent={cartItems?.length} color="white">
                         <ShoppingCartIcon onClick={toggleCart(true)} />
                     </Badge>
                 </IconButton>
@@ -198,7 +199,7 @@ function Header() {
                             aria-label="show 17 new notifications"
                             color="inherit"
                         >
-                            <Badge badgeContent={count} color="error">
+                            <Badge badgeContent={cartItems?.length} color="error">
                                 <ShoppingCartIcon onClick={toggleCart(true)} />
                             </Badge>
                         </IconButton>
@@ -248,4 +249,4 @@ function Header() {
 }
 
 
-export default Header
+export default Header;

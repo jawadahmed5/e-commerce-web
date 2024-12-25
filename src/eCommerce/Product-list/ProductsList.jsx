@@ -5,6 +5,9 @@ import React, { useEffect, useState } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Link } from 'react-router-dom';
 import productsDetails from '../products-Details/ProductsDetails';
+import { useDispatch } from 'react-redux';
+import CartList from '../CartList/CartList';
+import { AddCart } from '../Store/slice/cart/cartSlice';
 
 // import { styled, alpha } from '@mui/material/styles';
 // import AppBar from '@mui/material/AppBar';
@@ -40,6 +43,9 @@ const ProductsList = (props) => {
 
 
     console.log(products);
+
+
+const dispatch = useDispatch();
 
 
 
@@ -80,7 +86,11 @@ const ProductsList = (props) => {
       sx={{ width: 250, padding:"10px", }}
       renderInput={(params) => <TextField {...params} label="Category" />}
     /> */}
-            <Grid container p={5} spacing={5}       >
+            <Grid
+            
+            
+            
+             container p={5} spacing={5}       >
 
 
                 {loadingData ? <CircularProgress /> :
@@ -128,7 +138,7 @@ const ProductsList = (props) => {
                                                 <Button size='small' className='ms-4'><VisibilityIcon /></Button>
                                             </Link>
                                         </Tooltip>
-                                        <Button size='small' variant="contained" color="success">
+                                        <Button size='small' variant="contained" color="success" onClick={() => dispatch(AddCart(product))}>
                                             Add
                                         </Button>
 
