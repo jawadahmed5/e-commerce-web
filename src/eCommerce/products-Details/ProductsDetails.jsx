@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 // import { Button } from 'bootstrap';
 import { Button } from '@mui/material';
+import { SkeletonProductsDetails } from './SkeletonProductsDetails';
 
 
 const ProductsDetails = () => {
@@ -47,7 +48,7 @@ const ProductsDetails = () => {
       <Box className='text-center'>
 
 
- {loadingData ? <CircularProgress /> :
+ {loadingData ? <SkeletonProductsDetails/>:
 
         <div className='container mt-5 text-start'>
           <div className='row'>
@@ -90,7 +91,6 @@ const ProductsDetails = () => {
           </div>
         </div>
 }
-
 
 
 
