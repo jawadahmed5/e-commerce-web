@@ -2,13 +2,15 @@ import { Box, Button, InputAdornment, TextField, Typography } from '@mui/materia
 // import { Button } from 'bootstrap/dist/js/bootstrap.bundle.min'
 import React, { useState } from 'react'
 import { Card } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { data, Link, Navigate, useNavigate } from 'react-router-dom'
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup"
 import PrimarySearchAppBar from '../../HomePage/HomePage';
+import axios from 'axios';
+import { Email } from '@mui/icons-material';
 
 
 const signinSchema = yup.object({
@@ -26,15 +28,38 @@ const Signin = () => {
     resolver: yupResolver(signinSchema)
 
   });
+  const navigate = useNavigate()
+
+  const signinHandler = (data) => {
+
+    const signinUser = async () => {
+      const resp = await axios.post("https://api.escuelajs.co/api/v1/auth/login", {
+        email: data.userEmail,
+        password: data.userPassword
+      })
+
+      if (resp.data.access_token) {
+        localStorage.setItem("token", resp.data.access_token)
+      navigate("/");
+      }
+
+    }
+    
+
+
+signinUser();
+
+  }
 
   console.log(errors);
+
 
 
   return (
     <>
 
 
-      <form onSubmit={handleSubmit((data) => console.log(data)
+      <form onSubmit={handleSubmit((data) => signinHandler(data)
       )}>
         <div className='text-center'>
 
