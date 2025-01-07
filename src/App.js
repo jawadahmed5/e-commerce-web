@@ -15,6 +15,7 @@ import { Store } from './eCommerce/Store/Store';
 // import  productsDetails from './eCommerce/products-Details/ProductsDetails';
 import ProductsDetails from './eCommerce/products-Details/ProductsDetails';
 import ProductsList from './eCommerce/Product-list/ProductsList';
+import ProtectedRoutes from './eCommerce/Protected-routes/ProtectedRoutes';
 // import CartList from './eCommerce/CartList/CartList';
 // import file from './eCommerce/folder/File';
 // import Header from './eCommerce/Header/Header';
@@ -25,62 +26,35 @@ import ProductsList from './eCommerce/Product-list/ProductsList';
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/", element: <PrimarySearchAppBar />,
+      path: "/", element:
 
-
-      // children:[
-
-
-      //   // {
-      //   //   path:"/jawad",
-      //   //   element: <productsCards/>
-      //   // },
-
-      //   {
-      //     path:"/Products-Detail",
-      //      element: <ProductsDetails/>
-      //     },
-      //     {
-      //       path:"/ahmed",
-      //        element: <file/>
-      //       },
-
-
-
-
-      // ],
-
-
-
-
-
-
+        <ProtectedRoutes>
+          <PrimarySearchAppBar />
+        </ProtectedRoutes>
+      ,
       errorElement: <ErrorPage />
     },
     {
       path: "/Products-Detail/:product_id",
-      element: <ProductsDetails />
+      element:
+        <ProtectedRoutes>
+          <ProductsDetails />
+          </ProtectedRoutes >
     },
-    { path: "/Sign-up", element: <Signup /> },
-    { path: "/Sign-in", element: <Signin /> },
-    // { path: "/file", element: <File /> },
+          {path: "/Sign-up", element: <Signup /> },
+          {path: "/Sign-in", element: <Signin /> },
 
-    // {path: "/Products-Detail", element:<productsDetails/> },
-    // {path:"/Home-page", element: <}
-  ])
-  return (
-    <div className="App">
-      {/* <CartList/> */}
-      {/* <RouterProvider router={router}/> */}
-      <Provider store={Store}>
-        {/* <Header/> */}
+          ])
+          return (
+          <div className="App">
+            <Provider store={Store}>
 
-        <RouterProvider router={router} />
+              <RouterProvider router={router} />
 
-      </Provider>
-      {/* <ErrorPage/> */}
-    </div>
-  );
+            </Provider>
+
+          </div>
+          );
 }
 
-export default App;
+          export default App;

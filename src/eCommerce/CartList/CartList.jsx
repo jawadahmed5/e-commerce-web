@@ -78,17 +78,24 @@ import { decreaseQuantity, deleteItem, increaseQuantity } from '../Store/slice/c
 const CartList = (props) => {
   const { openCart, toggleCart } = props;
 
-  const { cartItems } = useSelector((state) => state.cart)
+  const { cartItems } = useSelector((state) => state.cart);
+
+
+
 
 const dispatch = useDispatch()
 
   console.log(cartItems, "cartItems");
 
+  const totalPrice = cartItems.reduce((value, addItem ) => addItem.price + addItem.quantity + value, 0   )
+ ;
+ console.log(totalPrice,"totalPrice");
+  
 
   return (
     <Drawer open={openCart} onClose={toggleCart(false)}>
 
-      <Box sx={{ width: "300px", }} >
+      <Box className='position-relative' sx={{ width: "300px", height:"99vh" }} >
         <Typography variant='h5' className='text-center bg-primary text-white p-3 fw-bold'>Shopping Cart</Typography>
 
         {cartItems?.map((item) => {
@@ -128,6 +135,8 @@ const dispatch = useDispatch()
           </>
         })}
 
+
+<Button className='position-absolute bottom-0 ' variant='contained' fullWidth>TOTAL PRICE : ${totalPrice} </Button>
 
         {/* <Box className='d-flex justify-content-center align-items-center flex-column' sx={{ width: "270px", height: "100%" }} >
           <Typography>Your Shopping Cart is Empty</Typography>
