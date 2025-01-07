@@ -1,4 +1,4 @@
-import { Autocomplete, Box, CircularProgress, Grid, Rating, TextField, Tooltip, Typography } from '@mui/material';
+import { Autocomplete, Box, CircularProgress, Grid, Pagination, Rating, TextField, Tooltip, Typography } from '@mui/material';
 import { Button, Card } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -40,7 +40,12 @@ const ProductsList = (props) => {
 
     const [products, setProducts] = useState([]);
     const [loadingData, setLoadingData] = useState(true)
+const [currentPage , setCurrentPage] = useState();
 
+
+    const itemsPage = 8;
+
+const totalPages = Math.ceil(products.length/itemsPage)
 
     console.log(products);
 
@@ -95,7 +100,7 @@ const dispatch = useDispatch();
 
                 {loadingData ? <CircularProgress /> :
 
-                    products.map((product) => {
+                    products.slice((currentPage - 1 )* itemsPage, currentPage * itemsPage)?.map((product) => {
                         return (
                             <Grid item sm={3}>
                                 <Card className="p-2 ">
@@ -146,6 +151,9 @@ const dispatch = useDispatch();
 
                                 </Card>
                             </Grid>
+
+                          
+                          
                         )
                     })}
 
@@ -252,6 +260,9 @@ const dispatch = useDispatch();
     
                     </Card> */}
             </Grid>
+            <Box className='d-flex justify-content-center pb-2'>
+                            <Pagination onChange={(e, value) => { setCurrentPage(value)}} count={totalPages} variant="outlined" color="primary" />
+                            </Box>
         </>
     )
 }
