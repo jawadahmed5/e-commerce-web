@@ -6,38 +6,14 @@ import { useParams } from 'react-router-dom';
 // import { Button } from 'bootstrap';
 import { Button } from '@mui/material';
 import { SkeletonProductsDetails } from './SkeletonProductsDetails';
+import useProductsDetails from './useProductsDetails';
+import ProductModal from './ProductModal';
 
-
+ 
 const ProductsDetails = () => {
-  const [product, setProduct] = useState([]);
-  const [loadingData, setLoadingData] = useState(true)
-  const { product_id } = useParams()
-    const [value, setValue] = useState(2);
+  
 
-
-    const [products, setProducts] = useState([]);
-    // const [loadingData, setLoadingData] = useState(true)
-
-  console.log(product);
-
-
-
-
-
-  useEffect(() => {
-    const productsData = axios.get(`https://fakestoreapi.com/products/${product_id}`).then(
-      (data) => {
-        setProduct(data.data);
-
-
-
-        setLoadingData(false);
-      })
-    console.log(productsData);
-
-
-  }, [])
-
+  const {loadingData,value,setValue,product,setProducts,open,handleOpen,handleClose} = useProductsDetails()
 
   return (
     <>
@@ -99,6 +75,8 @@ const ProductsDetails = () => {
 
 
       </Box>
+    
+    <ProductModal open={open} handleClose={handleClose} handleOpen={handleOpen}  />
     </>
 
   )

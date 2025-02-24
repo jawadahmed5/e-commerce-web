@@ -26,7 +26,8 @@ import ProtectedRoutes from './eCommerce/Protected-routes/ProtectedRoutes';
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/", element:
+      path: "/", 
+      element:
 
         <ProtectedRoutes>
           <PrimarySearchAppBar />

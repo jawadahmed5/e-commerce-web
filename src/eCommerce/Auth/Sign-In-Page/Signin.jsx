@@ -1,63 +1,17 @@
 import { Box, Button, InputAdornment, TextField, Typography } from '@mui/material'
-// import { Button } from 'bootstrap/dist/js/bootstrap.bundle.min'
 import React, { useState } from 'react'
 import { Card } from 'react-bootstrap'
 import { data, Link, Navigate, useNavigate } from 'react-router-dom'
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Controller, useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup"
-import PrimarySearchAppBar from '../../HomePage/HomePage';
-import axios from 'axios';
-import { Email } from '@mui/icons-material';
+import useSignin from './useSignin';
 
 
-const signinSchema = yup.object({
-  userEmail: yup.string().required(),
-  userPassword: yup.string().trim().min(7, "Password must be at least 7 characters").max(15, "Password must be less than 15 characters").required()
-
-})
 
 const Signin = () => {
-  const [showPassword, setShowPassword] = useState(false)
 
-  const { control, handleSubmit, formState: { errors } } = useForm({
-    defaultValues: { userEmail: "", userPassword: "", },
-
-    resolver: yupResolver(signinSchema)
-
-  });
-  const navigate = useNavigate()
-
-  const signinHandler = (data) => {
-
-    const signinUser = async () => {
-      const resp = await axios.post("https://api.escuelajs.co/api/v1/auth/login", {
-        email: data.userEmail,
-        password: data.userPassword
-      })
-
-      if (resp.data.access_token) {
-        localStorage.setItem("token", resp.data.access_token)
-      navigate("/");
-      }
-
-console.log(resp, "resp");
-
-
-
-    }
-    
-
-
-signinUser();
-
-  }
-
-  console.log(errors);
-
-
+  const { control, handleSubmit, signinHandler, showPassword, errors, setShowPassword } = useSignin();
 
   return (
     <>

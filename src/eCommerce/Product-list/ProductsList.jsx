@@ -8,77 +8,25 @@ import productsDetails from '../products-Details/ProductsDetails';
 import { useDispatch } from 'react-redux';
 import CartList from '../CartList/CartList';
 import { AddCart } from '../Store/slice/cart/cartSlice';
-
-// import { styled, alpha } from '@mui/material/styles';
-// import AppBar from '@mui/material/AppBar';
-// import Box from '@mui/material/Box';
-// import Toolbar from '@mui/material/Toolbar';
-// import IconButton from '@mui/material/IconButton';
-// import Typography from '@mui/material/Typography';
-// import InputBase from '@mui/material/InputBase';
-// import Badge from '@mui/material/Badge';
-// import MenuItem from '@mui/material/MenuItem';
-// import Menu from '@mui/material/Menu';
-// import MenuIcon from '@mui/icons-material/Menu';
-// import SearchIcon from '@mui/icons-material/Search';
-// import AccountCircle from '@mui/icons-material/AccountCircle';
-// import MailIcon from '@mui/icons-material/Mail';
-// import NotificationsIcon from '@mui/icons-material/Notifications';
-// import MoreIcon from '@mui/icons-material/MoreVert';
-// import ProductImage1 from '../../Assets/product-img-1.jpg';
-// import ProductImage2 from '../../Assets/product-img-2.jpg';
-// import ProductImage3 from '../../Assets/product-img-3.jpg';
-// import ProductImage4 from '../../Assets/product-img-4.jpg';
-
-
+import useProductList from './useProductList';
 
 const ProductsList = (props) => {
     const { productsCards } = props;
 
-    const [value, setValue] = useState(2);
-
-
-    const [products, setProducts] = useState([]);
-    const [loadingData, setLoadingData] = useState(true)
-const [currentPage , setCurrentPage] = useState();
-
-
-    const itemsPage = 8;
-
-const totalPages = Math.ceil(products.length/itemsPage)
-
-    console.log(products);
-
-
-const dispatch = useDispatch();
 
 
 
 
-    useEffect(() => {
-        const productsData = axios.get("https://fakestoreapi.com/products").then(
-            (data) => {
-                setProducts(data.data);
+    const { dispatch, loadingData, currentPage, totalPages, setCurrentPage, itemsPage, setValue, products } = useProductList();
 
 
 
-                setLoadingData(false);
-            })
-        console.log(productsData);
-
-
-    }, [])
 
 
     if (!productsCards) {
         return <div></div>;
 
     }
-
-
-
-
-
 
 
     return (
@@ -92,18 +40,18 @@ const dispatch = useDispatch();
       renderInput={(params) => <TextField {...params} label="Category" />}
     /> */}
             <Grid
-            
-            
-            
-             container p={5} spacing={5}       >
+
+
+
+                container p={5} spacing={5}       >
 
 
                 {loadingData ? <CircularProgress /> :
 
-                    products.slice((currentPage - 1 )* itemsPage, currentPage * itemsPage)?.map((product) => {
+                    products.slice((currentPage - 1) * itemsPage, currentPage * itemsPage)?.map((product) => {
                         return (
                             <Grid item sm={3}>
-                                <Card className="p-2 ">
+                                <Card style={{ minWidth: "300px", maxWidth: "300px", minHeight: "100%", maxHeight: "100%" }} className="p-3 ">
                                     <img className='text-center' style={{ minWidth: "100%", maxWidth: "100%", minHeight: "200px", maxHeight: "200px", backGround: "red" }} className='img-fluid' src={product.image} alt="" />
                                     <Typography className='pt-1' variant='body1'>
                                         {product.category}
@@ -152,8 +100,8 @@ const dispatch = useDispatch();
                                 </Card>
                             </Grid>
 
-                          
-                          
+
+
                         )
                     })}
 
@@ -261,8 +209,8 @@ const dispatch = useDispatch();
                     </Card> */}
             </Grid>
             <Box className='d-flex justify-content-center pb-2'>
-                            <Pagination onChange={(e, value) => { setCurrentPage(value)}} count={totalPages} variant="outlined" color="primary" />
-                            </Box>
+                <Pagination onChange={(e, value) => { setCurrentPage(value) }} count={totalPages} variant="outlined" color="primary" />
+            </Box>
         </>
     )
 }
