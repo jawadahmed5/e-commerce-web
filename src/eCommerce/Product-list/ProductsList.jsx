@@ -50,7 +50,7 @@ const ProductsList = (props) => {
 
                     products.slice((currentPage - 1) * itemsPage, currentPage * itemsPage)?.map((product) => {
                         return (
-                            <Grid item sm={3}>
+                            <Grid item sm={12} md={4} lg={3}>
                                 <Card style={{ minWidth: "300px", maxWidth: "300px", minHeight: "100%", maxHeight: "100%" }} className="p-3 ">
                                     <img className='text-center' style={{ minWidth: "100%", maxWidth: "100%", minHeight: "200px", maxHeight: "200px", backGround: "red" }} className='img-fluid' src={product.image} alt="" />
                                     <Typography className='pt-1' variant='body1'>

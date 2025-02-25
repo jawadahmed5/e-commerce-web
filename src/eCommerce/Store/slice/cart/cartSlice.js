@@ -65,20 +65,3 @@ export const { AddCart, increaseQuantity, decreaseQuantity,deleteItem } = cartLi
 
 export default cartList.reducer;
 
-// Above is basic Boiler plate
-// import { createSlice } from "@reduxjs/toolkit";
-
-// const cartList = createSlice({
-//     name : 'AddtoCart',
-//     initialState:{},
-//     reducers:{.com
-
-// AddCart:() => {},
-//     },
-// })
-
-// export const {AddCart} = cartList.actions;
-
-// export default cartList.reducer;
-
-// // Above is basic Boiler plate

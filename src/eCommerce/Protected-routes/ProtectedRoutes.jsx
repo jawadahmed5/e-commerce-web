@@ -26,7 +26,7 @@ const navigate = useNavigate();
 
 
        
-       navigate("/sign-up")
+       navigate("/")
        
     }
 

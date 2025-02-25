@@ -68,9 +68,9 @@ const Signin = () => {
               </Box>
 
               <Box>
+              <Link to="/">
                 <Button type='submit' variant="contained" fullWidth className='mt-3 text-decoration-none text-white fw-bold' >Sign in</Button>
-                {/* <Link to="/Sign-in"></Link> */}
-
+                 </Link>  
               </Box>
               <Box>
                 <Typography className='pt-4' variant='body2'>Don't Have an Account? <Link to="/Sign-up">Sign up</Link></Typography>
