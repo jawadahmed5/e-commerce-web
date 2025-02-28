@@ -1,67 +1,45 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const cartList = createSlice({
-    name: 'AddtoCart',
+const cartSlice = createSlice({
+    name: 'cart',
     initialState: {
         cartItems: [],
-
     },
     reducers: {
+        addToCart: (state, action) => {
+            console.log("Adding to Cart:", action.payload);
 
-        AddCart: (state, action) => {
-            console.log(action.payload, "actions");
+            const existingItem = state.cartItems.find(item => item.id === action.payload.id);
 
-
-            const isExist = state.cartItems.find((item) => item.id === action.payload.id);
-
-
-            if (isExist) {
-                isExist.quantity += 1;
+            if (existingItem) {
+                existingItem.quantity += 1;
             } else {
                 state.cartItems.push({ ...action.payload, quantity: 1 });
-
             }
-
         },
 
         increaseQuantity: (state, action) => {
-            const isExist = state.cartItems.find((item) => item.id === action.payload.id);
-
-
-            if (isExist) {
-                // Increase quantity of the item by 1
-                isExist.quantity += 1;
+            const item = state.cartItems.find(item => item.id === action.payload.id);
+            if (item) {
+                item.quantity += 1;
             }
-
         },
 
         decreaseQuantity: (state, action) => {
-            const isExist = state.cartItems.find((item) => item.id === action.payload.id);
-
-
-            if (isExist && isExist.quantity > 1 ) {
-                isExist.quantity -= 1;
-
+            const item = state.cartItems.find(item => item.id === action.payload.id);
+            if (item && item.quantity > 1) {
+                item.quantity -= 1;
             }
-
         },
 
-deleteItem: (state, action) => {
-state.cartItems = state.cartItems.filter((item) => item.id !== action.payload.id);
+        deleteItem: (state, action) => {
+            state.cartItems = state.cartItems.filter(item => item.id !== action.payload.id);
+        }
+    }
+});
 
-}
+// Actions Export
+export const { addToCart, increaseQuantity, decreaseQuantity, deleteItem } = cartSlice.actions;
 
-    },
-
-
-})
-
-
-
-export const { AddCart, increaseQuantity, decreaseQuantity,deleteItem } = cartList.actions;
-
-
-
-
-export default cartList.reducer;
-
+// Reducer Export
+export default cartSlice.reducer;
