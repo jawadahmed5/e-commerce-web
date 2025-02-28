@@ -11,7 +11,7 @@ const useProductList = () => {
 
     const [products, setProducts] = useState([]);
     const [loadingData, setLoadingData] = useState(true)
-const [currentPage , setCurrentPage] = useState();
+const [currentPage , setCurrentPage] = useState(1);
 
 
     const itemsPage = 8;

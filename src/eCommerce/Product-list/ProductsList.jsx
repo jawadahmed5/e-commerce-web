@@ -1,12 +1,8 @@
-import { Autocomplete, Box, CircularProgress, Grid, Pagination, Rating, TextField, Tooltip, Typography } from '@mui/material';
+import { Box, CircularProgress, Grid, Pagination, Rating, Tooltip, Typography } from '@mui/material';
 import { Button, Card } from '@mui/material';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Link } from 'react-router-dom';
-import productsDetails from '../products-Details/ProductsDetails';
-import { useDispatch } from 'react-redux';
-import CartList from '../CartList/CartList';
 import { AddCart } from '../Store/slice/cart/cartSlice';
 import useProductList from './useProductList';
 
@@ -32,13 +28,7 @@ const ProductsList = (props) => {
     return (
 
         <>
-            {/* <Autocomplete
-      disablePortal
-      
-      options={[]}
-      sx={{ width: 250, padding:"10px", }}
-      renderInput={(params) => <TextField {...params} label="Category" />}
-    /> */}
+
             <Grid
 
 
@@ -52,7 +42,7 @@ const ProductsList = (props) => {
                         return (
                             <Grid item sm={12} md={4} lg={3}>
                                 <Card style={{ minWidth: "300px", maxWidth: "300px", minHeight: "100%", maxHeight: "100%" }} className="p-3 ">
-                                    <img className='text-center' style={{ minWidth: "100%", maxWidth: "100%", minHeight: "200px", maxHeight: "200px", backGround: "red" }} className='img-fluid' src={product.image} alt="" />
+                                    <img className='text-center img-fluid' style={{ minWidth: "100%", maxWidth: "100%", minHeight: "200px", maxHeight: "200px", backGround: "red" }} src={product.image} alt="" />
                                     <Typography className='pt-1' variant='body1'>
                                         {product.category}
                                     </Typography>
@@ -108,105 +98,6 @@ const ProductsList = (props) => {
 
 
 
-                {/* <Card className='p-3'>
-                        <img src={ProductImage2} alt="" />
-                        <Typography variant='body2'>
-                            Hello world
-                        </Typography>
-    
-                        <Typography variant='h6'>
-                            NutriChoice Digestive
-                        </Typography>
-    
-    
-                        <Rating
-                            name="simple-uncontrolled"
-                            onChange={(event, newValue) => {
-                                setValue(newValue);
-    
-    
-                            }}
-                            defaultValue={2}
-                        />
-                        
-                        <Box sx={{ display: 'flex', justifyContent: "space-between", alignItems:"center" }}>
-                            <Typography >
-                                $24
-                            </Typography>
-                            <Button size='small' variant="contained" color="success">
-                                Add
-                            </Button>
-    
-    
-                        </Box>
-    
-                    </Card>
-                    <Card className='p-3'>
-                        <img src={ProductImage3} alt="" />
-                        <Typography variant='body2'>
-                            Hello world
-                        </Typography>
-    
-                        <Typography variant='h6'>
-                            NutriChoice Digestive
-                        </Typography>
-    
-    
-                        <Rating
-                            name="simple-uncontrolled"
-                            onChange={(event, newValue) => {
-                                setValue(newValue);
-    
-    
-                            }}
-                            defaultValue={2}
-                        />
-                        
-                        <Box sx={{ display: 'flex', justifyContent: "space-between", alignItems:"center" }}>
-                            <Typography >
-                                $24
-                            </Typography>
-                            <Button size='small' variant="contained" color="success">
-                                Add
-                            </Button>
-    
-    
-                        </Box>
-    
-                    </Card>
-                    <Card className='p-3'>
-                        <img src={ProductImage4} alt="" />
-                        <Typography variant='body2'>
-                            Hello world
-                        </Typography>
-    
-                        <Typography variant='h6'>
-                            NutriChoice Digestive
-                        </Typography>
-    
-    
-                        <Rating
-                            name="simple-uncontrolled"
-                            onChange={(event, newValue) => {
-                                setValue(newValue);
-    
-    
-                            }}
-                            defaultValue={2}
-                        />
-                        
-                        <Box sx={{ display: 'flex', justifyContent: "space-between", alignItems:"center" }}>
-                            <Typography >
-                                $24
-                            </Typography>
-                            <Button size='small' variant="contained" color="success">
-                                Add
-                            </Button>
-    
-    
-                        </Box>
-    
-                    </Card> */}
             </Grid>
             <Box className='d-flex justify-content-center pb-2'>
                 <Pagination onChange={(e, value) => { setCurrentPage(value) }} count={totalPages} variant="outlined" color="primary" />
